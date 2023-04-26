@@ -5,8 +5,11 @@ body {
     margin: 20px;
     color: white;
 }
-.form-control {
+#outputArea {
     background-color: #c0c0c0;
+}
+#machineOutputArea{
+        background-color: #c0c0c0;
 }
 label {
     padding: 10px 0px;

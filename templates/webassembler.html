@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="inputArea">Write LALU Assembly here!</label>
             <br>
-            <textarea class="form-control" id="inputArea" name="inputArea" rows="20">{{inputText}}</textarea>
+            <textarea class="form-control" id="inputArea" name="inputArea" rows="27">{{inputText}}</textarea>
         </div>
         <!--
         <div class="form-group">
@@ -35,16 +35,19 @@
 
     <div id="output" class="col-4">
         <div class="form-group">
-            <label for="outputArea">Output:</label>
+            <label for="outputArea">Original Program</label>
             <br>
             <textarea class="form-control" id="outputArea" name="outputArea" rows="20" readonly>{{outputText}}</textarea>
         </div>
         <div class="form-group">
-            <label for="machineOutputArea">Machine code alone:</label>
+            <label for="machineOutputArea">Machine code</label>
             <br>
-            <textarea class="form-control" id="machineOutputArea" rows="1" readonly></textarea>
+            <textarea class="form-control" id="machineOutputArea" rows="5" readonly>{{machineText}}</textarea>
         </div>
-        <a class="btn btn-secondary" id="downloadMachine" href="" download="assembled.txt">Download</a>
+        <div>
+            <button class="btn btn-info" id="copy">Copy</button>
+            <a class="btn btn-secondary" id="downloadMachine" href="" download="assembled.txt">Download</a>
+        </div>
     </div>
 </body>
 </html>
