@@ -19,10 +19,15 @@ label {
 }
 #input {
     text-align: center;
+    padding: 0px 20px;
 }
 #output {
     text-align: center;
+    padding: 0px 20px;
 }
 #inputFile {
     display: block;
+}
+#machineCodeLabel {
+    padding: 24px 0px 10px 0px;
 }
