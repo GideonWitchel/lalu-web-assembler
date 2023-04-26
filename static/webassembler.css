@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #0c2340;
+    margin: 20px;
+    color: white;
+}
+.form-control {
+    background-color: #c0c0c0;
+}
+label {
+    padding: 10px 0px;
+}
+.btn {
+    margin: 20px 20px 0px 20px;
+}
+#input {
+    text-align: center;
+}
+#output {
+    text-align: center;
+}
+#inputFile {
+    display: block;
+}
