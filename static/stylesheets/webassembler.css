@@ -4,6 +4,7 @@ body {
     background-color: #0c2340;
     margin: 20px;
     color: white;
+    font-family: Consolas,monaco,monospace; 
 }
 #outputArea {
     background-color: #c0c0c0;
