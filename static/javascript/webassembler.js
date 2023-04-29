@@ -28,6 +28,8 @@ window.addEventListener("load", function(){
 
         reader.onload = function () {
             inputText.innerHTML = reader.result.replace(/\r\n|\n/, "\n");
+            // Automatically submit form to assemble code
+            document.getElementById("assemble-form").submit()
         };
 
         if(files[0]) {
