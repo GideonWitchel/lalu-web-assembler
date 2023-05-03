@@ -1,21 +1,26 @@
+// Object constants
+// let instead of const because they are defined in the onload function
+let inputArea
+let outputArea
+let outputCodeArea
+
 window.addEventListener("load", async function(){
+    inputArea = document.getElementById('inputArea');
+    outputArea = document.getElementById('outputArea');
+    outputCodeArea = document.getElementById('machineOutputArea')
+
     await initAutoCopy()
 
-    // File downloads
-    let inputText = document.getElementById('inputArea');
-    let outputText = document.getElementById('outputArea');
-    let outputCode = document.getElementById('machineOutputArea')
-
     document.getElementById('downloadMachine').addEventListener("click", function(e) {
-        e.target.href = 'data:text/plain;charset=utf-11,' + encodeURIComponent("Original Program\n") + encodeURIComponent(outputText.value) + encodeURIComponent("\nProgram Memory (copy & paste this into your program memory)\n\n") + encodeURIComponent(outputCode.value);
+        e.target.href = 'data:text/plain;charset=utf-11,' + encodeURIComponent("Original Program\n") + encodeURIComponent(outputArea.value) + encodeURIComponent("\nProgram Memory (copy & paste this into your program memory)\n\n") + encodeURIComponent(outputCodeArea.value);
     });
 
     document.getElementById('downloadAssembly').addEventListener("click", function(e) {
-        e.target.href = 'data:text/plain;charset=utf-11,' + encodeURIComponent(inputText.value);
+        e.target.href = 'data:text/plain;charset=utf-11,' + encodeURIComponent(inputArea.value);
     });
 
     document.getElementById('copy').addEventListener("click", async function() {
-        await copyItem(outputCode)
+        await copyItem(outputCodeArea)
     });
 
     window.addEventListener("drop", function(e) {
@@ -24,7 +29,7 @@ window.addEventListener("load", async function(){
         let reader = new FileReader();
 
         reader.onload = function () {
-            inputText.innerHTML = reader.result.replace(/\r\n|\n/, "\n");
+            inputArea.innerHTML = reader.result.replace(/\r\n|\n/, "\n");
             // Automatically submit form to assemble code
             document.getElementById("assemble-form").submit()
         };
@@ -36,14 +41,6 @@ window.addEventListener("load", async function(){
         }
     });
 
-    // Indicate that the code is stale
-    $("#inputArea").change(function() {
-        outputText.style.backgroundColor = "dimgray"
-        outputCode.style.backgroundColor = "dimgray"
-        outputText.style.color = "white"
-        outputCode.style.color = "white"
-    });
-
     $("#auto-copy").change(function() {
         if (this.checked){
             enableAutoCopy()
@@ -53,6 +50,13 @@ window.addEventListener("load", async function(){
         }
     })
 });
+
+function staleCode() {
+    outputArea.style.backgroundColor = "dimgray"
+    outputCodeArea.style.backgroundColor = "dimgray"
+    outputArea.style.color = "white"
+    outputCodeArea.style.color = "white"
+}
 
 async function copyItem(toCopy) {
     toCopy.select();
@@ -94,7 +98,7 @@ async function initAutoCopy() {
                 // Otherwise the cookie is 1
                 // Restore switch and copy
                 autoCopy.prop("checked", true)
-                await copyItem(document.getElementById("machineOutputArea"))
+                await copyItem(outputCodeArea)
                 return
             }
             cookie = cookie.substring(1, cookie.length);
